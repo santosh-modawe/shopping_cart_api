@@ -38,7 +38,7 @@ router.get('/category',(req,res,next)=>{
 })
 
 
-router.post('/category',(req,res,next)=>{
+router.post('/category', async (req,res,next)=>{
   
     let data={}
     let error=[]
@@ -51,6 +51,20 @@ router.post('/category',(req,res,next)=>{
     {
         return res.status(400).send({message:'Bad request',error:error})
     }
+
+    let cat_result = await model.category.getCategoryByName(req.body['name'])
+    if(cat_result.length)
+    {
+        error.push({field:'name',message:'Category with same name already exist'})
+    }
+
+    if(error.length)
+    {
+        return res.status(400).send({message:'Bad request',error:error})
+    }
+
+
+     
      
     data['name']=req.body['name'];
 
@@ -65,7 +79,7 @@ router.post('/category',(req,res,next)=>{
 
 })
 
-router.put('/category',(req,res,next)=>{
+router.put('/category',async (req,res,next)=>{
 
 
     let data={}
@@ -83,6 +97,20 @@ router.put('/category',(req,res,next)=>{
     {
         return res.status(400).send({message:'Bad request',error:error})
     }
+
+    
+    let cat_result = await model.category.getCategoryByName(req.body['name'])
+    if(cat_result.length)
+    {
+        error.push({field:'name',message:'Category with same name already exist'})
+    }
+
+    if(error.length)
+    {
+        return res.status(400).send({message:'Bad request',error:error})
+    }
+
+
      
     data['name']=req.body['name'];
 

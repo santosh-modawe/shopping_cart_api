@@ -107,6 +107,33 @@ class Category {
         });
     }
 
+     getCategoryByName(name)
+     {
+
+        return new Promise(async (resolve,reject)=>{
+
+            try
+            {
+                let result =await db(this.table)
+                            .where({name});
+
+                            if(result)
+                            {
+                                resolve(result);
+
+                            }else{
+                                reject('invalid detail')  
+                            }
+               
+            }catch(error)
+            {
+               reject(error)
+            }
+
+        });
+
+     }
+
 
 }
 
