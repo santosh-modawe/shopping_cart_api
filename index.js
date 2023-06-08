@@ -1,10 +1,12 @@
 const express = require('express')
+const fileUpload = require('express-fileupload');
 const app = express();
 const apipath=require('./routes/api')
 const config=require('./config')
 const swaggerUi = require('swagger-ui-express'),
 swaggerDocument = require('./swagger.json');
 app.use(express.json());
+app.use(fileUpload());
 app.use('/api',apipath)
 app.use(
     '/api-docs',

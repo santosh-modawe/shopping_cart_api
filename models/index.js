@@ -1,9 +1,5 @@
 const category=require('./category')
-
-
-
-
-
-module.exports={ category:category}
+const product=require('./product')
+module.exports={ category:category,product:product}
 
 
