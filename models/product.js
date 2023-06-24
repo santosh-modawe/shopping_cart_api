@@ -6,12 +6,12 @@ class Product {
     table='item'
 
 
-    addProduct(pdata)
+    addProduct(pdata,images)
     {
         return new Promise((resolve,reject)=>{
             try
             {  
-                let result =db(this.table).insert(cdata);
+                let result =db(this.table).insert(pdata);
                 resolve(result);
 
             }catch(error)
